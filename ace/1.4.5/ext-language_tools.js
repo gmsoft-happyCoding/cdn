@@ -1686,7 +1686,7 @@ var Autocomplete = function() {
     this.destroy = function() {
         this.detach();
         this.popup && this.popup.destroy();
-        var el = this.popup.container;
+        var el = this.popup && this.popup.container;
         if (el && el.parentNode)
             el.parentNode.removeChild(el);
         if (this.editor && this.editor.completer == this)
