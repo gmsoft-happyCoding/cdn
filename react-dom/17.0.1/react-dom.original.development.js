@@ -1,4 +1,3 @@
-/* 🔥 this is hot-loader/react-dom 🔥 */
 /** @license React v17.0.1
  * react-dom.development.js
  *
@@ -13410,7 +13409,7 @@
     function updateElement(returnFiber, current, element, lanes) {
       if (current !== null) {
         if (current.elementType === element.type || ( // Keep this check inline so it only runs on the false path:
-         hotCompareElements(current.elementType, element.type, hotUpdateChild(current), current.type) )) {
+         isCompatibleFamilyForHotReloading(current, element) )) {
           // Move based on index
           var existing = useFiber(current, element.props);
           existing.ref = coerceRef(returnFiber, current, element);
@@ -14045,7 +14044,7 @@
             default:
               {
                 if (child.elementType === element.type || ( // Keep this check inline so it only runs on the false path:
-                 hotCompareElements(child.elementType, element.type, hotUpdateChild(child), child.type) )) {
+                 isCompatibleFamilyForHotReloading(child, element) )) {
                   deleteRemainingChildren(returnFiber, child.sibling);
 
                   var _existing3 = useFiber(child, element.props);
@@ -26278,66 +26277,7 @@
     }
   }
 
-  
-
-var hotUpdateChild = function (child) {
-  return function (newType) {
-    child.type = newType;
-    if (child.alternate) {
-      child.alternate.type = newType;
-    }
-  }
-};
-var hotResolveType = function (type) {
-  return type;
-};
-var hotCompareElements = function (oldType, newType) {
-  return oldType === newType
-};
-var hotCleanupHooks = function () {
-  if (typeof resetHooks !== 'undefined') {
-    resetHooks();
-  }
-}
-
-var evalInReactContext = function (injection) {
-  return eval(injection);
-};
-var hotCleanup = hotCleanupHooks;
-var hotRenderWithHooks = function (current, render) {
-  hotCleanupHooks();
-
-  if (typeof nextCurrentHook !== 'undefined' && typeof ReactCurrentDispatcher$1 !== 'undefined') {
-    nextCurrentHook = current !== null ? current.memoizedState : null;
-    if (typeof firstCurrentHook !== 'undefined') {
-      firstCurrentHook = nextCurrentHook;
-    }
-
-    ReactCurrentDispatcher$1.current = nextCurrentHook === null ? HooksDispatcherOnMountInDEV : HooksDispatcherOnUpdateInDEV;
-  }
-
-  var rendered = render();
-
-  hotCleanupHooks();
-
-  return rendered;
-}
-var setHotElementComparator = function (newComparator) {
-  hotCompareElements = newComparator
-};
-var setHotTypeResolver = function (newResolver) {
-  hotResolveType = newResolver;
-};
-;
-
-exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = Internals;
-
-exports.evalInReactContext= evalInReactContext,
-exports.hotCleanup= hotCleanup,
-exports.hotRenderWithHooks= hotRenderWithHooks,
-exports.setHotElementComparator= setHotElementComparator,
-exports.setHotTypeResolver= setHotTypeResolver,
-
+  exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = Internals;
   exports.createPortal = createPortal$1;
   exports.findDOMNode = findDOMNode;
   exports.flushSync = flushSync;
@@ -26350,5 +26290,3 @@ exports.setHotTypeResolver= setHotTypeResolver,
   exports.version = ReactVersion;
 
 })));
-
-/* 🔥 this is hot-loader/react-dom 🔥 */
