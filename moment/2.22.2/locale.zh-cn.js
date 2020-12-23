@@ -1,14 +1,14 @@
 //! moment.js locale configuration
 
-(function(global, factory) {
+(function (global, factory) {
   typeof exports === "object" &&
   typeof module !== "undefined" &&
   typeof require === "function"
-    ? factory(require("../moment"))
+    ? factory(require("moment"))
     : typeof define === "function" && define.amd
     ? define(["moment"], factory)
     : factory(global.moment);
-})(this, function(moment) {
+})(this, function (moment) {
   "use strict";
 
   var zhCn = moment.defineLocale("zh-cn", {
@@ -31,10 +31,10 @@
       l: "YYYY/M/D",
       ll: "YYYY年M月D日",
       lll: "YYYY年M月D日 HH:mm",
-      llll: "YYYY年M月D日dddd HH:mm"
+      llll: "YYYY年M月D日dddd HH:mm",
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-    meridiemHour: function(hour, meridiem) {
+    meridiemHour: function (hour, meridiem) {
       if (hour === 12) {
         hour = 0;
       }
@@ -47,7 +47,7 @@
         return hour >= 11 ? hour : hour + 12;
       }
     },
-    meridiem: function(hour, minute, isLower) {
+    meridiem: function (hour, minute, isLower) {
       var hm = hour * 100 + minute;
       if (hm < 600) {
         return "凌晨";
@@ -69,10 +69,10 @@
       nextWeek: "[下]ddddLT",
       lastDay: "[昨天]LT",
       lastWeek: "[上]ddddLT",
-      sameElse: "L"
+      sameElse: "L",
     },
     dayOfMonthOrdinalParse: /\d{1,2}(日|月|周)/,
-    ordinal: function(number, period) {
+    ordinal: function (number, period) {
       switch (period) {
         case "d":
         case "D":
@@ -101,13 +101,13 @@
       M: "1 个月",
       MM: "%d 个月",
       y: "1 年",
-      yy: "%d 年"
+      yy: "%d 年",
     },
     week: {
       // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
       dow: 1, // Monday is the first day of the week.
-      doy: 4 // The week that contains Jan 4th is the first week of the year.
-    }
+      doy: 4, // The week that contains Jan 4th is the first week of the year.
+    },
   });
 
   return zhCn;
