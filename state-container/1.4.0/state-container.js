@@ -2147,7 +2147,9 @@ function createStateContainer(_a) {
     var _b = _a === void 0 ? {
         onError: defaultOnError,
         NODE_ENV: 'production',
-    } : _a, history = _b.history, NODE_ENV = _b.NODE_ENV, onError = _b.onError, createGlobalContextOpts = _b.createGlobalContextOpts;
+        useThemePlugin: true,
+        useGlobalContextPlugin: false,
+    } : _a, history = _b.history, NODE_ENV = _b.NODE_ENV, onError = _b.onError, useThemePlugin = _b.useThemePlugin, useGlobalContextPlugin = _b.useGlobalContextPlugin, globalContextOpts = _b.globalContextOpts;
     if (stateContainer)
         return stateContainer;
     /**
@@ -2170,8 +2172,10 @@ function createStateContainer(_a) {
         : {};
     stateContainer = dvaCore.create({ onError: onError }, createOpts);
     stateContainer.use(createLoading());
-    stateContainer.use(createThemePlugin());
-    stateContainer.use(createGlobalContextPlugin(createGlobalContextOpts));
+    if (useThemePlugin)
+        stateContainer.use(createThemePlugin());
+    if (useGlobalContextPlugin)
+        stateContainer.use(createGlobalContextPlugin(globalContextOpts));
     /**
      * dynamic inject dva model to stateContainer
      * if replace=true, same namespace model will be replaced

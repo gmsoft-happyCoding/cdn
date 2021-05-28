@@ -11,7 +11,9 @@ interface ArgsI {
     history?: History;
     NODE_ENV?: string;
     onError?: (err: any) => void;
-    createGlobalContextOpts?: OptsI;
+    useThemePlugin?: boolean;
+    useGlobalContextPlugin?: boolean;
+    globalContextOpts?: OptsI;
 }
-declare function createStateContainer({ history, NODE_ENV, onError, createGlobalContextOpts }?: ArgsI): StateContainer;
+declare function createStateContainer({ history, NODE_ENV, onError, useThemePlugin, useGlobalContextPlugin, globalContextOpts, }?: ArgsI): StateContainer;
 export { createStateContainer as create };
