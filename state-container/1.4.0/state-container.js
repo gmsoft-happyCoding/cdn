@@ -2144,12 +2144,7 @@ var stateContainer = null;
 // eslint-disable-next-line no-console
 var defaultOnError = function (err) { return console.error(err); };
 function createStateContainer(_a) {
-    var _b = _a === void 0 ? {
-        onError: defaultOnError,
-        NODE_ENV: 'production',
-        useThemePlugin: true,
-        useGlobalContextPlugin: false,
-    } : _a, history = _b.history, NODE_ENV = _b.NODE_ENV, onError = _b.onError, useThemePlugin = _b.useThemePlugin, useGlobalContextPlugin = _b.useGlobalContextPlugin, globalContextOpts = _b.globalContextOpts;
+    var _b = _a === void 0 ? {} : _a, history = _b.history, _c = _b.NODE_ENV, NODE_ENV = _c === void 0 ? 'production' : _c, _d = _b.onError, onError = _d === void 0 ? defaultOnError : _d, _e = _b.useThemePlugin, useThemePlugin = _e === void 0 ? true : _e, _f = _b.useGlobalContextPlugin, useGlobalContextPlugin = _f === void 0 ? false : _f, globalContextOpts = _b.globalContextOpts;
     if (stateContainer)
         return stateContainer;
     /**
