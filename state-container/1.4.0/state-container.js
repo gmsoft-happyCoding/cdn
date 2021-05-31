@@ -1999,7 +1999,7 @@ var getIsAdmin = (function (allRoles) {
 
 var compatibilityMe = function (me) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    if (!me)
+    if (!me || Object.getOwnPropertyNames(me).length === 0)
         return undefined;
     return __assign(__assign({}, me), { admin: getIsAdmin((_a = me.org) === null || _a === void 0 ? void 0 : _a.allRoles), adminAreaId: (_b = me.org) === null || _b === void 0 ? void 0 : _b.areaId, adminAreaName: (_c = me.org) === null || _c === void 0 ? void 0 : _c.areaName, maintainPlatId: (_d = me.additionalInformation) === null || _d === void 0 ? void 0 : _d.maintainPlatId, orgId: (_e = me.org) === null || _e === void 0 ? void 0 : _e.orgId, orgName: (_f = me.org) === null || _f === void 0 ? void 0 : _f.orgName, orgType: (_g = me.org) === null || _g === void 0 ? void 0 : _g.orgType, userName: me.realName, userTypes: ((_h = me.org) === null || _h === void 0 ? void 0 : _h.allRoles) ? (_j = me.org) === null || _j === void 0 ? void 0 : _j.allRoles.join(',') : undefined });
 };
