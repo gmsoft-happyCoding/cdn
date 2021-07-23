@@ -1,8 +1,8 @@
 (function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('dva-core'), require('react-router-redux'), require('@gmsoft/event-bus'), require('axios')) :
-typeof define === 'function' && define.amd ? define(['exports', 'dva-core', 'react-router-redux', '@gmsoft/event-bus', 'axios'], factory) :
-(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.StateContainer = {}, global.DvaCore, global.ReactRouterRedux, global.EventBus, global.axios));
-}(this, (function (exports, dvaCore, reactRouterRedux, createOrFindInTop, axios) { 'use strict';
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('dva-core'), require('react-router-redux'), require('@gmsoft/event-bus'), require('axios'), require('react-redux')) :
+typeof define === 'function' && define.amd ? define(['exports', 'dva-core', 'react-router-redux', '@gmsoft/event-bus', 'axios', 'react-redux'], factory) :
+(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.StateContainer = {}, global.DvaCore, global.ReactRouterRedux, global.EventBus, global.axios, global.ReactRedux));
+}(this, (function (exports, dvaCore, reactRouterRedux, createOrFindInTop, axios, reactRedux) { 'use strict';
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -1991,18 +1991,42 @@ var __assign = function() {
     return __assign.apply(this, arguments);
 };
 
-var getIsAdmin = (function (allRoles) {
-    if (!allRoles)
+var getIsAdmin = (function (roles) {
+    if (!roles)
         return false;
-    return allRoles.findIndex(function (role) { return String(role).endsWith('01'); }) !== -1;
+    return roles.findIndex(function (role) { return String(role).endsWith('01'); }) !== -1;
 });
 
 var compatibilityMe = function (me) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
     if (!me || Object.getOwnPropertyNames(me).length === 0)
         return undefined;
-    return __assign(__assign({}, me), { admin: getIsAdmin((_a = me.org) === null || _a === void 0 ? void 0 : _a.allRoles), adminAreaId: (_b = me.org) === null || _b === void 0 ? void 0 : _b.areaId, adminAreaName: (_c = me.org) === null || _c === void 0 ? void 0 : _c.areaName, maintainPlatId: (_d = me.additionalInformation) === null || _d === void 0 ? void 0 : _d.maintainPlatId, orgId: (_e = me.org) === null || _e === void 0 ? void 0 : _e.orgId, orgName: (_f = me.org) === null || _f === void 0 ? void 0 : _f.orgName, orgType: (_g = me.org) === null || _g === void 0 ? void 0 : _g.orgType, userName: me.realName, userTypes: ((_h = me.org) === null || _h === void 0 ? void 0 : _h.allRoles) ? (_j = me.org) === null || _j === void 0 ? void 0 : _j.allRoles.join(',') : undefined });
+    return __assign({ admin: getIsAdmin(me === null || me === void 0 ? void 0 : me.roles), adminAreaId: (_a = me === null || me === void 0 ? void 0 : me.org) === null || _a === void 0 ? void 0 : _a.areaId, adminAreaName: (_b = me === null || me === void 0 ? void 0 : me.org) === null || _b === void 0 ? void 0 : _b.areaName, maintainPlatId: (_c = me === null || me === void 0 ? void 0 : me.additionalInformation) === null || _c === void 0 ? void 0 : _c.mpi, orgId: (_d = me === null || me === void 0 ? void 0 : me.org) === null || _d === void 0 ? void 0 : _d.orgId, orgName: (_e = me === null || me === void 0 ? void 0 : me.org) === null || _e === void 0 ? void 0 : _e.orgName, orgType: (_f = me === null || me === void 0 ? void 0 : me.org) === null || _f === void 0 ? void 0 : _f.orgType, userName: me === null || me === void 0 ? void 0 : me.realName, userTypes: (me === null || me === void 0 ? void 0 : me.roles) ? me === null || me === void 0 ? void 0 : me.roles.join(',') : undefined, deptRole: (_g = me === null || me === void 0 ? void 0 : me.additionalInformation) === null || _g === void 0 ? void 0 : _g.deptRole, isBidDown: (_h = me === null || me === void 0 ? void 0 : me.additionalInformation) === null || _h === void 0 ? void 0 : _h.isBidDown, isSj: (_j = me === null || me === void 0 ? void 0 : me.additionalInformation) === null || _j === void 0 ? void 0 : _j.isSj, orgClassNo: (_k = me === null || me === void 0 ? void 0 : me.additionalInformation) === null || _k === void 0 ? void 0 : _k.orgClassNo, organClass: (_l = me === null || me === void 0 ? void 0 : me.additionalInformation) === null || _l === void 0 ? void 0 : _l.organClass, userType: (_m = me === null || me === void 0 ? void 0 : me.additionalInformation) === null || _m === void 0 ? void 0 : _m.userType }, me);
 };
+
+function parseUrl(url) {
+    var _url = url.startsWith('//') ? "" + window.location.protocol + url : url;
+    var result = {};
+    var keys = [
+        'href',
+        'origin',
+        'protocol',
+        'host',
+        'hostname',
+        'port',
+        'pathname',
+        'search',
+        'hash',
+    ];
+    var regexp = /(([^:]+:)\/\/(([^:/?#]+)(:\d+)?))(\/[^?#]*)?(\?[^#]*)?(#.*)?/;
+    var match = regexp.exec(_url);
+    if (match) {
+        for (var i = keys.length - 1; i >= 0; --i) {
+            result[keys[i]] = match[i] ? match[i] : '';
+        }
+    }
+    return result;
+}
 
 var SET = '@@GLOBAL_CONTEXT/SET';
 var NAMESPACE = 'globalContext';
@@ -2062,7 +2086,7 @@ function createGlobalContextPlugin(opts) {
                      */
                     top[STORE_KEY] = state;
                     /**
-                     * 发送事件通知子应用主题改变了
+                     * 发送事件通知子应用 state 改变了
                      */
                     eventBus.emit(CHANGE_KEY, state);
                 }
@@ -2073,14 +2097,16 @@ function createGlobalContextPlugin(opts) {
                 /**
                  * 加载登录用户信息
                  */
-                axios__default['default']({ url: ME_URL }).then(function (response) {
-                    store.dispatch({ type: SET, payload: { me: compatibilityMe(response.data) } });
-                }, function (error) {
-                    var _a;
-                    if (((_a = error === null || error === void 0 ? void 0 : error.response) === null || _a === void 0 ? void 0 : _a.status) !== 401)
-                        // eslint-disable-next-line no-console
-                        console.log('加载登录用户信息失败', error);
-                });
+                if (opts.notLoadMe !== true) {
+                    axios__default['default']({ url: ME_URL }).then(function (response) {
+                        store.dispatch({ type: SET, payload: { me: compatibilityMe(response.data) } });
+                    }, function (error) {
+                        var _a;
+                        if (((_a = error === null || error === void 0 ? void 0 : error.response) === null || _a === void 0 ? void 0 : _a.status) !== 401)
+                            // eslint-disable-next-line no-console
+                            console.log('加载登录用户信息失败', error);
+                    });
+                }
                 if (opts.djcGatewayBaseUrl) {
                     /**
                      * 加载平台信息
@@ -2088,7 +2114,7 @@ function createGlobalContextPlugin(opts) {
                     axios__default['default']({
                         url: makePlatInfoUrl(opts.djcGatewayBaseUrl),
                         params: {
-                            orgDomainName: location.host,
+                            orgDomainName: opts.origin ? parseUrl(opts.origin).host : window.location.host,
                         },
                     }).then(function (response) {
                         store.dispatch({
@@ -2099,6 +2125,7 @@ function createGlobalContextPlugin(opts) {
                                     name: response.data.systemName,
                                     type: response.data.platformType,
                                     classify: response.data.type,
+                                    domain: response.data.domainName,
                                     deployPoint: opts.deployPoint,
                                 },
                             },
@@ -2118,7 +2145,7 @@ function createGlobalContextPlugin(opts) {
         }
         /**
          * 在子应用中
-         * 接受应用主题改变事件通知, 修改 state
+         * 接受改变事件通知, 修改 state
          */
         var handleChangeEnhancer = function (storeCreator) { return function (reducer, preloadedState, enhancer) {
             var store = storeCreator(reducer, preloadedState, enhancer);
@@ -2137,6 +2164,8 @@ function createGlobalContextPlugin(opts) {
         };
     }
 }
+var globalSelector = function (state) { return state[NAMESPACE]; };
+var useGlobal = function () { return reactRedux.useSelector(globalSelector); };
 
 // model namespace cache
 var cached = {};
@@ -2194,6 +2223,8 @@ function createStateContainer(_a) {
 }
 
 exports.create = createStateContainer;
+exports.globalSelector = globalSelector;
+exports.useGlobal = useGlobal;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
