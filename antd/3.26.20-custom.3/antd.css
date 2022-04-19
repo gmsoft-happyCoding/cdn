@@ -960,9 +960,6 @@ mark {
 [ant-click-animating-without-extra-node='true'] {
   position: relative;
 }
-html {
-  --antd-wave-shadow-color: var(--primaryColor, #1890ff);
-}
 [ant-click-animating-without-extra-node='true']::after,
 .ant-click-animating-node {
   position: absolute;
@@ -974,8 +971,8 @@ html {
   border-radius: inherit;
   -webkit-box-shadow: 0 0 0 0 var(--primaryColor, #1890ff);
           box-shadow: 0 0 0 0 var(--primaryColor, #1890ff);
-  -webkit-box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);
-          box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);
+  -webkit-box-shadow: 0 0 0 0 var(--waveShadowColor, var(--primaryColor));
+          box-shadow: 0 0 0 0 var(--waveShadowColor, var(--primaryColor));
   opacity: 0.2;
   -webkit-animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1), waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
           animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1), waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
@@ -988,16 +985,16 @@ html {
   100% {
     -webkit-box-shadow: 0 0 0 var(--primaryColor, #1890ff);
             box-shadow: 0 0 0 var(--primaryColor, #1890ff);
-    -webkit-box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
-            box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
+    -webkit-box-shadow: 0 0 0 6px var(--waveShadowColor, var(--primaryColor));
+            box-shadow: 0 0 0 6px var(--waveShadowColor, var(--primaryColor));
   }
 }
 @keyframes waveEffect {
   100% {
     -webkit-box-shadow: 0 0 0 var(--primaryColor, #1890ff);
             box-shadow: 0 0 0 var(--primaryColor, #1890ff);
-    -webkit-box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
-            box-shadow: 0 0 0 6px var(--antd-wave-shadow-color);
+    -webkit-box-shadow: 0 0 0 6px var(--waveShadowColor, var(--primaryColor));
+            box-shadow: 0 0 0 6px var(--waveShadowColor, var(--primaryColor));
   }
 }
 @-webkit-keyframes fadeEffect {
@@ -6302,9 +6299,6 @@ a.ant-btn-sm {
 }
 .ant-badge-status-warning {
   background-color: var(--warningColor, #faad14);
-}
-.ant-badge-status-pink {
-  background: var(--pink6, #eb2f96);
 }
 .ant-badge-status-magenta {
   background: var(--magenta6, #eb2f96);
@@ -18103,23 +18097,13 @@ textarea.ant-time-picker-input {
   color: var(--white, #fff);
 }
 .ant-tag-checkable-checked {
-  background-color: var(--primaryColor6, var(--primaryColor, #1890ff));
+  background-color: var(--primaryColor, var(--primaryColor, #1890ff));
 }
 .ant-tag-checkable:active {
   background-color: var(--primaryColor7, #096dd9);
 }
 .ant-tag-hidden {
   display: none;
-}
-.ant-tag-pink {
-  color: var(--pink6, #eb2f96);
-  background: var(--pink1, #fff0f6);
-  border-color: var(--pink3, #ffadd2);
-}
-.ant-tag-pink-inverse {
-  color: var(--white, #fff);
-  background: var(--pink6, #eb2f96);
-  border-color: var(--pink6, #eb2f96);
 }
 .ant-tag-magenta {
   color: var(--magenta6, #eb2f96);
