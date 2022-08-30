@@ -13,6 +13,9 @@
       .iconfont.hangup {
         display: none !important;
       }
+      .item.iinvite {
+        display: none !important;
+      }
     </style>
     <link
       rel="shortcut icon"
@@ -75,10 +78,8 @@
         );
       }
 
-      if(config.openMode == 'box'){
-         injectCssFn(
-          '.full-screen{display: none !important;}'
-        );
+      if (config.openMode == 'box') {
+        injectCssFn('.full-screen{display: none !important;}');
       }
 
       window.pageConfig = Object.assign({}, window.pageConfig, config);
