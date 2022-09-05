@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="theme-normal">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <title>视频会议</title>
+    <style>
+      #conference-control .icons .content .icon:nth-child(3) {
+        display: none !important;
+      }
+      .iconfont.hangup {
+        display: none !important;
+      }
+      .item.iinvite {
+        display: none !important;
+      }
+    </style>
+    <link
+      rel="shortcut icon"
+      href="data:image/png;base64,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"
+      type="image/png"
+    />
+    <link
+      href="https://g.alicdn.com/InformationPlatform/conference_js/2.0.27/conference.css"
+      rel="stylesheet"
+    />
+    <script src="https://lang.alicdn.com/daily/web-conference/0.0.18/web-conference.json"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      function injectCssFn(css) {
+        const headEl = document.getElementsByTagName("head")[0];
+        const styleEl = document.createElement("style");
+        headEl.appendChild(styleEl);
+
+        try {
+          styleEl.innerHTML = css;
+        } catch (e) {
+          try {
+            styleEl.innerText = css;
+          } catch (error) {
+            styleEl.styleSheet.cssText = css;
+          }
+        }
+      }
+    </script>
+    <script>
+      window.pageConfig = {
+        minChromeVersion: 70,
+        meetingLogo: "",
+        downloadUrl: "",
+        startClientUrl: "",
+        unsupportBrowserUrl: false,
+        unsupportBrowserVersionUrl: false,
+        showChat: false,
+        showEmailInvite: false,
+        showSpeakerIcon: true,
+        showMicroIcon: true,
+        showCameraIcon: true,
+        showShowScreenIcon: true,
+        showClientGuide: false,
+        moreInfo: { language: true, extra: [] },
+        nickJoinTitle: false,
+        appTitle: { en: "Meeting", "zh-cn": "视频会议" },
+        appDefaultLang: "zh-cn",
+        meetingRouter: location.pathname,
+      };
+
+      const config = JSON.parse(
+        new URLSearchParams(location.search).get("config")
+      );
+
+      // 非主持人屏蔽静音他人的功能
+      if (!config.isHost) {
+        injectCssFn(
+          "div.mute:not(.self){display: none !important;} .mute-all{display: none !important;}"
+        );
+      }
+
+      if (config.openMode == "box") {
+        injectCssFn(".full-screen{display: none !important;}");
+      }
+
+      window.pageConfig = Object.assign({}, window.pageConfig, config);
+    </script>
+    <script src="https://g.alicdn.com/InformationPlatform/conference_js/2.0.27/dll/vendor_h.js"></script>
+    <script src="https://g.alicdn.com/InformationPlatform/conference_js/2.0.27/conference.js"></script>
+  </body>
+</html>
