@@ -1,0 +1,15 @@
+var tokenInterceptor=function(K){"use strict";function s(t){return t&&typeof t=="object"&&"default"in t?t:{default:t}}var _=s(K),D=function(t,a){try{if(document.cookie&&document.cookie.length>0){var e=document.cookie.split(/\s*;\s*/);if(e&&e.length>0){var r=e.find(function(u){return u.startsWith(t)}),n=r?r.split("=")[1]:null;return n&&a?a+" "+n:n}}return null}catch{return null}},S=function(t){var a=t===void 0?{}:t,e=a.platDomain,r=e===void 0?window.location.host:e,n=a.platDomainKey,u=n===void 0?"__platDomain__":n,l=a.notSetPlatDomain,p=l===void 0?!1:l,m=a.authCookieKey,v=m===void 0?"Auth":m,c=a.authHeaderKey,f=c===void 0?"Authorization":c,o=a.authScheme,d=o===void 0?"Auth":o,h=a.notSetAuthHeader,y=h===void 0?!1:h;return{platDomain:r,platDomainKey:u,notSetPlatDomain:p,authCookieKey:v,authHeaderKey:f,authScheme:d,notSetAuthHeader:y}},H=function(t){var a=S(t),e=a.platDomain,r=a.platDomainKey,n=a.notSetPlatDomain,u=a.authCookieKey,l=a.authHeaderKey,p=a.authScheme,m=a.notSetAuthHeader,v=D(u,p);!m&&v&&_.default(document).ajaxSend(function(c,f,o){(!o||!o.headers||!o.headers[l])&&f.setRequestHeader(l,v)}),!n&&e&&_.default(document).ajaxSend(function(c,f,o){var d,h,y=((d=o==null?void 0:o.url)===null||d===void 0?void 0:d.indexOf(r+"="))!==-1;y||(o.url=""+o.url+(!((h=o==null?void 0:o.url)===null||h===void 0)&&h.indexOf("?")?"&":"?")+r+"="+e)})};/*! *****************************************************************************
+    Copyright (c) Microsoft Corporation.
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+    ***************************************************************************** */var i=function(){return i=Object.assign||function(a){for(var e,r=1,n=arguments.length;r<n;r++){e=arguments[r];for(var u in e)Object.prototype.hasOwnProperty.call(e,u)&&(a[u]=e[u])}return a},i.apply(this,arguments)},k=function(t){return function(a){var e,r,n=S(t),u=n.platDomain,l=n.platDomainKey,p=n.notSetPlatDomain,m=n.authCookieKey,v=n.authHeaderKey,c=n.authScheme,f=n.notSetAuthHeader,o=p||!u||a.params&&a.params[l]?a.params:i(i({},a.params),(e={},e[l]=u,e)),d=D(m,c),h=f||!d||a.headers[v]?a.headers:i(i({},a.headers),(r={},r[v]=d,r));return i(i({},a),{params:o,headers:h})}},P=function(t){var a="tokenInterceptor";return window.angular&&window.angular.module(a,[]).factory(a,function(){return{request:function(e){return k(t)(e)}}}).config(["$httpProvider",function(r){r.interceptors.push(a)}]),a},A=function(t){return H(t),P(t)};return A}($);
+//# sourceMappingURL=token-interceptor.iife.js.map
