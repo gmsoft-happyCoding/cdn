@@ -181,6 +181,8 @@
 .swal2-container {
   display: grid;
   position: fixed;
+  top: 0;
+  width: 100%;
   z-index: 20000000;
   inset: 0;
   box-sizing: border-box;
