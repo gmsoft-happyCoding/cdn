@@ -1,0 +1,16 @@
+<script>
+  function getParams() {
+    try {
+      const paramsString = location.search.split("=")[1];
+      return JSON.parse(decodeURIComponent(paramsString));
+    } catch {
+      return {};
+    }
+  }
+
+  const { identity } = getParams();
+
+  const path = `./${identity ? "no-key" : "usb-key"}/index.html`;
+
+  location.replace(path + location.search);
+</script>
