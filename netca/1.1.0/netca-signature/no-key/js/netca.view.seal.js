@@ -713,7 +713,7 @@ var NetcaPDFSeal = (function () {
                     }
                     pin = $(this).val(); // 保存pin码
                     layer.closeAll();
-                    fetchStamp(multiPagesParams, callback, false);
+                    fetchStamp(multiPagesParams, callback, flag);
                   }
                 });
               },
@@ -724,7 +724,7 @@ var NetcaPDFSeal = (function () {
               }
               pin = value; // 保存pin码
               layer.close(index);
-              fetchStamp(multiPagesParams, callback, false);
+              fetchStamp(multiPagesParams, callback, flag);
             },
             function (value, index) {
               layer.close(index);
