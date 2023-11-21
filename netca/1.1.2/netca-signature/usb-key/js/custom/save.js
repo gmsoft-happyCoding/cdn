@@ -1,0 +1,80 @@
+function base64ToArrayBuffer(base64) {
+  var binaryString = atob(base64);
+  var bytes = new Uint8Array(binaryString.length);
+  for (var i = 0; i < binaryString.length; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+function doPostMessage(data) {
+  try {
+    const handler = window.opener || window.parent;
+    /**
+     * isSignedData 标记是否是签名后的数据
+     * 用于区分是否是签名后的数据
+     */
+    handler.postMessage({ ...data, isSignedData: true }, "*");
+  } catch {
+    /**
+     * postMessage 发送失败
+     */
+    showError("保存失败, 请联系管理员", 5000);
+  }
+}
+
+function uploadArrayBufferRawImage(url, arraybuffer) {
+  var formData = new FormData();
+  formData.append(
+    "file",
+    new Blob([arraybuffer], { type: "application/pdf" }),
+    "signed.pdf",
+  );
+  return fetch(url, {
+    method: "POST",
+    body: formData,
+  })
+    .then(function (resp) {
+      return resp.json();
+    })
+    .then(function (json) {
+      return json;
+    });
+}
+
+async function save(data) {
+  const { saveFileUrl, token } = getParams();
+
+  if (!saveFileUrl) {
+    showError("请设置保存文件的地址", 5000);
+    return;
+  }
+
+  showLoading("正在保存，请稍后...");
+
+  const url = token
+    ? `${saveFileUrl}${saveFileUrl.includes("?") ? "&" : "?"}token=${token}`
+    : saveFileUrl;
+
+  try {
+    const result = await uploadArrayBufferRawImage(url, data);
+    removeLoading();
+    return result;
+  } catch {
+    showError("文件上传失败", 5000);
+  }
+}
+
+// 通过完成事件获取签章后的PDF流;
+NetcaPDFSeal.setSignCallbackEvent(async (res) => {
+  var res = JSON.parse(res);
+  if (res.status === 0) {
+    // res.result 是签完名后的文件的base64字符串
+    const data = base64ToArrayBuffer(res.result);
+
+    const responseData = await save(data);
+    doPostMessage(responseData);
+  } else {
+    showError("签章失败", 5000);
+  }
+});
