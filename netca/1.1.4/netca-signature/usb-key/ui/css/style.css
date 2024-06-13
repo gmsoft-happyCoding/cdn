@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/*多浏览器签章面板大小*/
+.netcasignpdf {
+  width: 1000px;
+  height: 800px;
+}
+#netca_canvas {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+}
+
+#netca_canvas #netcaPDF {
+  overflow: auto;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid #9d9d9d;
+  background: #9d9d9d url("../image/pic_netca_logo.png") center center no-repeat;
+}
+#netca_canvas canvas {
+  display: block;
+  margin: 1px auto -8px auto;
+  position: relative;
+  overflow: visible;
+  border: 9px solid transparent;
+  background-clip: content-box;
+  -o-border-image: url("../image/shadow.png") 9 9 repeat;
+  border-image: url("../image/shadow.png") 9 9 repeat;
+  background-color: white;
+}
+canvas:last-child {
+  margin-bottom: 20px !important;
+}
+#netca_canvas .NetcaToolBar {
+  width: 100%;
+  height: 70px;
+  background: url("../image/toolbar_bg.png");
+  position: relative;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  text-align: center;
+}
+#netca_canvas .NetcaToolBar .netcatoolbarButton {
+  width: 57px;
+  height: 70px;
+  padding: 0 3px;
+  border: none;
+  color: #60789e;
+  cursor: pointer;
+  margin: 0 10px;
+  background: transparent;
+}
+#netca_canvas .NetcaToolBar .netcatoolbarButton:hover,
+#netca_canvas .NetcaToolBar .netcatoolbarButton:active {
+  background: url("../image/pic_icon_hover.png");
+}
+.netcaselectScale {
+  position: relative;
+  top: 10px;
+}
+.netcapageNumber {
+  position: relative;
+  top: 10px;
+}
+.netcapageNumber #netcapageNumber {
+  width: 50px;
+  padding: 3px 0 3px 20px;
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-left: 0;
+}
+/*签章图片*/
+.NetcaSignLayer,
+.NetcaSignMoveDiv {
+  display: none;
+}
+.NetcaSignLayer .NetcaSignStep {
+  color: #4c82f0;
+  font-weight: bold;
+}
+.NetcaSignLayer .NetcaSignStepName {
+  color: #3f3646;
+  font-weight: bold;
+}
+.NetcaSignMoveDiv {
+  position: absolute;
+  pointer-events: none;
+}
+.NetcaSignMoveDiv #NetcaSignMoveImage {
+  display: block;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+/*layui*/
+.layui-table-header {
+  display: none;
+}
+.layui-table-body.layui-table-main {
+  height: 114px !important;
+}
+.layui-table td {
+  border: none;
+}
+.layui-layer-rim#layui-layer1 {
+  border: 6px solid #ebebeb !important;
+}
+.layui-layer-rim#layui-layer1 .layui-layer-title {
+  height: 32px;
+  line-height: 32px;
+  background-color: #ebebeb;
+  color: #60789e;
+}
+.layui-card-body {
+  padding: 0 15px;
+}
+.layui-card-body .NetcaSignDiv {
+  width: 520px;
+  margin: auto;
+  background-color: #fafafa;
+}
+.layui-card-body .NetcaSignDiv #NetcaSignImage {
+  display: block;
+  margin: auto;
+}
+.layui-table-view .layui-table {
+  width: 100%;
+}
+i.layui-anim.layui-icon.layui-anim-scaleSpring,
+i.layui-anim.layui-icon {
+  color: #4c82f0;
+}
+#NetcaSingImage {
+  margin: auto;
+  display: block;
+}
+tr.layui-table-hover,
+tr.layui-table-click {
+  background-color: #e2eeff !important;
+}
+.layui-table-body {
+  margin-bottom: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+.layui-card-body {
+  padding-bottom: 1px;
+}
+.layui-table {
+  background-color: #fafafa;
+}
+
+#NetcaReaderAxTable tr td {
+  padding: 10px;
+}
+
+/**获取源文件PDFbase64、签名后的PDFbase64*/
+.netcapdfbase64 {
+  margin: 20px;
+}
+.netcapdfbase64 table tr {
+  line-height: 40px;
+}
+.netcapdfbase64 table tr textarea {
+  padding: 10px;
+}
+.netcapdfbase64 table tr button {
+  cursor: pointer;
+  background: #1e9fff;
+  color: #f2f2f2;
+  border: none;
+  padding: 3px 5px;
+  box-sizing: content-box;
+}
+/*预览PDF*/
+.netcapreviewpdf {
+  width: 1000px;
+  height: 800px;
+  overflow: auto;
+  border: 1px solid #333;
+  background: #9d9d9d url("../image/pic_netca_logo.png") center center no-repeat;
+}
+
+.netcasignBtn {
+  margin: 20px;
+}
+.netcasignBtn button {
+  width: 70px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+}
