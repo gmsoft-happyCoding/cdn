@@ -30,7 +30,7 @@ function initPDF() {
 
       // 仅有一页时隐藏骑缝章按钮
       globalPDFViewerApplication.eventBus.on("pagesloaded", function (event) {
-        if (event && event.pagesCount === 0) {
+        if (event && event.pagesCount === 1) {
           document.querySelector(".pagingsign").style.display = "none";
         }
       });
